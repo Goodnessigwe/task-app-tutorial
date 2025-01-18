@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Manager Application</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <header class="header">
         <div class="header-left">
@@ -18,11 +20,11 @@
                     <h2 class="app-title">Signup</h2>
                 </a>
             </div>
-            
+
         </div>
     </header>
     <nav class="navbar">
-        
+
     </nav>
     <main class="dashboard">
         <div class="form-container">
@@ -35,9 +37,10 @@
                 <button type="submit" style="width: 100%">Login</button>
             </form>
         </div>
-        
+
     </main>
-    
-    
+
+
 </body>
+
 </html>

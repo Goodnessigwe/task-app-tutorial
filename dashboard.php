@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Manager Application</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <header class="header">
         <div class="header-left">
@@ -21,10 +23,9 @@
                     <label for="" class="custom-file-label">
                         Select image
                     </label>
-                    <input type="file" name="profile-image" id="profile-image" 
-                    onchange="" accept="image/*">
+                    <input type="file" name="profile-image" id="profile-image" onchange="" accept="image/*">
 
-                    <div class="preview-box" id="previewBox" >
+                    <div class="preview-box" id="previewBox">
                         <img id="imagePreviewBox" alt="preview image">
                         <button type="submit" class="upload-btn">upload</button>
                     </div>
@@ -146,7 +147,8 @@
             </div>
         </section>
     </main>
-    
-    
+
+
 </body>
+
 </html>

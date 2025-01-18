@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,31 +8,38 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
-        table{
+        table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
         }
-        th,td{
+
+        th,
+        td {
             padding: 10px;
             text-align: left;
             border-bottom: 1px solid #444;
         }
-        th{
+
+        th {
             background-color: #252540;
         }
-        tr:hover{
+
+        tr:hover {
             background-color: #333;
         }
-        h1{
+
+        h1 {
             margin-bottom: 20px;
         }
-        .btn-clear-all{
+
+        .btn-clear-all {
             margin-left: 10px;
             padding: 10px;
         }
     </style>
 </head>
+
 <body>
     <header class="header">
         <div class="header-left">
@@ -60,37 +68,38 @@
     </nav>
     <main class="dashboard">
         <section class="task-tables">
-                <h1>Completed Task History</h1>
-                <form action="" method="post">
-                    <button type="submit" class="action-btn btn-clear-all">
-                        Clear All
-                    </button>
+            <h1>Completed Task History</h1>
+            <form action="" method="post">
+                <button type="submit" class="action-btn btn-clear-all">
+                    Clear All
+                </button>
 
-                </form>
-                <table >
-                    <thead>
-                        <tr>
-                            <th>Task Name</th>
-                            <th>Created Date</th>
-                            <th>Due Date</th>
-                            <th>Completed date</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Reading</td>
-                            <td>17/01/2025</td>
-                            <td>30/01/2025</td>
-                            <td>20/02/2025</td>
-                            <td>
-                                <button class="action-btn btn-delete">Delete</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            </form>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Task Name</th>
+                        <th>Created Date</th>
+                        <th>Due Date</th>
+                        <th>Completed date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Reading</td>
+                        <td>17/01/2025</td>
+                        <td>30/01/2025</td>
+                        <td>20/02/2025</td>
+                        <td>
+                            <button class="action-btn btn-delete">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </section>
     </main>
-    
+
 </body>
+
 </html>
