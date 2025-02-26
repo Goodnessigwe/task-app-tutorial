@@ -4,7 +4,7 @@ require "db_connect.php";
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $username = $_POST["username"];
     $email = $_POST["email"];
-    $password = password_hash($POST["password"], PASSWORD_BCRYPT);
+    $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
 
     //Save data to database
 
