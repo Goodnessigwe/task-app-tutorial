@@ -52,17 +52,25 @@
             </div>
         </div>
     </header>
+    <?php
+    //Get the current page
+    $current_page = basename($_SERVER['PHP_SELF']);
+
+    ?>
     <nav class="navbar">
-        <button onclick="location.href='dashboard.html'">
+        <button onclick="location.href='dashboard.php'"
+            class="dashboard_btn <?= $current_page == 'dashboard.php' ? 'active' : '' ?>">
             Dashboard
         </button>
-        <button onclick="location.href='creat-task.html'">
+        <button onclick="location.href='creat-task.php' "
+            class=" dashboard_btn <?= $current_page == 'creat-task.php' ? 'active' : '' ?> ">
             Add New Task
         </button>
-        <button onclick="location.href='history.html'">
+        <button onclick=" location.href='history.php'"
+            class=" dashboard_btn <?= $current_page == 'history.php' ? 'active' : '' ?> ">
             View history
         </button>
-        <button onclick="location.href='logout.html'">
+        <button onclick=" location.href='logout.php'">
             Logout
         </button>
     </nav>

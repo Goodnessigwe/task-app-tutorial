@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         </div>
         <div class="header-right">
             <div class="main-profile img">
-                <a href="login.html">
+                <a href="login.php">
                     <h2 class="app-title">Login</h2>
                 </a>
             </div>
