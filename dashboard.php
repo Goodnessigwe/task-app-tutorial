@@ -1,59 +1,99 @@
+<?php
+
+session_start();
+require 'db_connect.php';
+
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
+$user_id = $_SESSION['user_id'];
+
+// Fetch the logged-in user's profile image
+$user_query = $conn->query("SELECT profile_image FROM users WHERE id = $user_id");
+$user = $user_query->fetch_assoc();
+
+// Default image if no profile image is uploaded
+$profile_image = $user['profile_image'] ? $user['profile_image'] : 'uploads/profile_images/default-profile.png';
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Manager Application</title>
+    <title>Task Manager Dashboard</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
+
     <header class="header">
+
+        <?php
+        // Fetch the user's profile image from the database
+        $user_query = $conn->query("SELECT profile_image FROM users WHERE id = $user_id");
+        $user = $user_query->fetch_assoc();
+
+        $profile_image = $user['profile_image'] ?? 'uploads/profile_images/default-profile.png'; // Use default if none exists
+        ?>
         <div class="header-left">
             <h1 class="app-title">Task Manager Dashboard</h1>
-            <p class="greeting">welcom, Joy!</p>
+            <p class="greeting">Welcome, <?= htmlspecialchars($_SESSION['username'] ?? 'Guest') ?>!</p>
         </div>
         <div class="header-right">
-            <div class="main-profile img">
-                <img src="" alt="main profile image">
+            <!-- Main Profile Image -->
+            <div class="main-profile">
+                <img id="imagePreviewMain" src="<?= htmlspecialchars($profile_image) ?>" alt="Main Profile Image">
             </div>
+
+            <!-- Always-visible File Input -->
             <div class="upload-controls">
-                <form action="" method="post" enctype="multipart/form-data">
-                    <label for="" class="custom-file-label">
-                        Select image
-                    </label>
-                    <input type="file" name="profile-image" id="profile-image" onchange="" accept="image/*">
+                <form action="update_profile.php" method="POST" enctype="multipart/form-data">
+                    <!-- Always-visible File Label -->
+                    <label for="profile_image" class="custom-file-label">Select Image</label>
+                    <input type="file" name="profile_image" id="profile_image" accept="image/*"
+                        onchange="previewImage(event)">
 
-                    <div class="preview-box" id="previewBox">
-                        <img id="imagePreviewBox" alt="preview image">
-                        <button type="submit" class="upload-btn">upload</button>
+                    <!-- Conditionally Visible Upload Button -->
+                    <div class="preview-box" id="previewBox" style="display: none;">
+                        <img id="imagePreviewBox" alt="Preview Image">
+                        <button type="submit" class="upload-btn">Upload</button>
                     </div>
-
                 </form>
             </div>
         </div>
     </header>
-    <?php
-    //Get the current page
-    $current_page = basename($_SERVER['PHP_SELF']);
 
+    <?php
+    // Get the current page name
+    $current_page = basename($_SERVER['PHP_SELF']);
     ?>
     <nav class="navbar">
         <button onclick="location.href='dashboard.php'"
-            class="dashboard_btn <?= $current_page == 'dashboard.php' ? 'active' : '' ?>">
+            class="dashboard-btn <?= $current_page == 'dashboard.php' ? 'active' : '' ?>">
             Dashboard
         </button>
-        <button onclick="location.href='creat-task.php' "
-            class=" dashboard_btn <?= $current_page == 'creat-task.php' ? 'active' : '' ?> ">
+
+        <button onclick="location.href='create_task.php'"
+            class="add-task-btn <?= $current_page == 'create_task.php' ? 'active' : '' ?>">
             Add New Task
         </button>
-        <button onclick=" location.href='history.php'"
-            class=" dashboard_btn <?= $current_page == 'history.php' ? 'active' : '' ?> ">
+        <button onclick="location.href='history.php'"
+            class="history-btn <?= $current_page == 'history.php' ? 'active' : '' ?>">
             View history
         </button>
-        <button onclick=" location.href='logout.php'">
-            Logout
+        <button onclick="location.href='logout.php'"
+            class="logout-btn <?= $current_page == 'logout.php' ? 'active' : '' ?>">
+            logout
         </button>
     </nav>
     <main class=" dashboard">
@@ -156,7 +196,24 @@
         </section>
     </main>
 
+    <script>
+    function previewImage(event) {
+        const reader = new FileReader();
+        const previewBox = document.getElementById('previewBox');
+        const imagePreviewBox = document.getElementById('imagePreviewBox');
 
+        reader.onload = function() {
+            imagePreviewBox.src = reader.result; // Display the selected image
+            previewBox.style.display = 'flex'; // Show the preview box with the Upload button
+        };
+
+        if (event.target.files && event.target.files[0]) {
+            reader.readAsDataURL(event.target.files[0]); // Read the selected file
+        } else {
+            previewBox.style.display = 'none'; // Hide the preview box if no file is selected
+        }
+    }
+    </script>
 </body>
 
 </html>
